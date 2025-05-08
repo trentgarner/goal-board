@@ -2,15 +2,15 @@
 
 <% content_for :title, "Lists" %>
 
-<h1>Lists</h1>
+<h1>Stuff To Do</h1>
 
 <div id="lists">
   <% @lists.each do |list| %>
     <%= render list %>
     <p>
-      <%= link_to "Show this list", list %>
+      <%= link_to "Show this task", list %>
     </p>
   <% end %>
 </div>
 
-<%= link_to "New list", new_list_path %>
+<%= link_to "New task", new_list_path %>
