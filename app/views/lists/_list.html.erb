@@ -1,12 +1,9 @@
-<div id="<%= dom_id list %>">
-  <p>
-    <strong>Task:</strong>
-    <%= list.description %>
-  </p>
-
-  <p>
-    <strong>Completed:</strong>
-    <%= list.completed %>
-  </p>
-
-</div>
+<tr id="list_<%= list.id %>">
+  <td><%= link_to list.description, edit_list_path(list), class: "mx-3" %></td>
+  <td class="text-center"><%= button_to 'Remove', list_path(list), method: :delete, class: "btn btn-danger btn-sm" %></td>
+  <% if list.completed? %>
+    <td class="table-success text-center">Complete</td>
+  <% else %>
+    <td class="table-danger text-center">Incomplete</td>
+  <% end %>
+</tr>

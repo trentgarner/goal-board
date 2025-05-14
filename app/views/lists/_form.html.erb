@@ -1,27 +1,30 @@
-<%= form_with(model: list) do |form| %>
-  <% if list.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h2>
-
-      <ul>
-        <% list.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<%= turbo_frame_tag "edit_list_#{list.id}" do %>
+  <div class="card my-4 shadow-lg bg-light">
+    <div class="card-body">
+      <%= form_with(model: list, data: { turbo: false }) do |form| %>
+        <% if list.errors.any? %>
+          <div class="alert alert-danger">
+            <h5><%= pluralize(list.errors.count, "error") %> prohibited this list from being saved:</h5>
+            <ul class="mb-0">
+              <% list.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="h2 text-center mb-3">
+          <%= form.label :Task, class: "form-label" %>
+          <%= form.text_field :description, class: "form-control", required: true %>
+        </div>
+
+        <div class="mb-3 form-check">
+          <%= form.check_box :completed, class: "form-check-input" %>
+          <%= form.label :completed, class: "form-check-label" %>
+        </div>
+
+        <%= form.submit class: "btn btn-success" %>
+      <% end %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div>
-    <%= form.label :completed, style: "display: block" %>
-    <%= form.check_box :completed %>
-  </div>
-
-  <div>
-    <%= form.submit %>
   </div>
 <% end %>
