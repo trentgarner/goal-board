@@ -1,2 +1,3 @@
-json.extract! list, :id, :description, :completed, :created_at, :updated_at
-json.url list_url(list, format: :json)
+# json.extract! list, :id, :description, :completed, :created_at, :updated_at
+# json.url list_url(list, format: :json)
+json.list list.serialized
